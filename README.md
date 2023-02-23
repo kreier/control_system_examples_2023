@@ -8,6 +8,7 @@ These are the files we used in class with the Sphero RVR for control and API
 2. on/off control with tolerance
 3. proportional control
 4. proportional-integral control
+5. proportional-integral-derivative control, see [PID controller on wikipedia](https://en.wikipedia.org/wiki/PID_controller)
 
 
 ## Platforms
