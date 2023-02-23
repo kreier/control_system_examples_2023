@@ -1,3 +1,23 @@
+#region VEXcode Generated Robot Configuration
+import math
+import random
+from vexcode_vr import *
+
+# Brain should be defined by default
+brain=Brain()
+
+drivetrain = Drivetrain("drivetrain", 0)
+pen = Pen("pen", 8)
+pen.set_pen_width(THIN)
+left_bumper = Bumper("leftBumper", 2)
+right_bumper = Bumper("rightBumper", 3)
+front_eye = EyeSensor("frontEye", 4)
+down_eye = EyeSensor("downEye", 5)
+front_distance = Distance("frontdistance", 6)
+distance = front_distance
+magnet = Electromagnet("magnet", 7)
+location = Location("location", 9)
+#endregion VEXcode Generated Robot Configuration
 # ------------------------------------------
 # 
 # 	Project:      VEXcode Project
@@ -6,22 +26,6 @@
 #	Description:  VEXcode VR Python Project
 # 
 # ------------------------------------------
-
-# Library imports
-from vexcode import *
-
-
-drivetrain = Drivetrain()
-magnet = Electromagnet("magnet", 0)
-pen = Pen()
-brain = Brain()
-left_bumper = Bumper("leftBumper", 1)
-right_bumper = Bumper("rightBumper", 2)
-distance = Distance()
-front_eye = EyeSensor("fronteye", 3)
-down_eye = EyeSensor("downeye", 4)
-location = Location()
-
 
 def driveControlProportional(duration):
     setpoint = 0
@@ -51,12 +55,11 @@ def driveControlProportional(duration):
         wait(1,MSEC)
     drivetrain.stop()
 
-
-
 # Add project code in "main"
 def main():
     driveControlProportional(5)
     drivetrain.turn_to_heading(90,DEGREES,wait=True)
 
+
 # VR threads — Do not delete
-vr_thread(main())
+vr_thread(main)
