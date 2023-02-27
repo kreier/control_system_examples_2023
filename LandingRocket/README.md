@@ -8,7 +8,8 @@ The simulation is located at [https://replit.com/@kreier/LandingRocket](https://
 - data[2] is acceleration
 
 As output you only control currentTrust with:
-- 
+
+- myRocket.setThrust()
 
 Running the simulation could look like this:
 
@@ -18,4 +19,6 @@ And if you export the data pairs to https://www.desmos.com/calculator you get a 
 
 ![desmos](desmos.png)
 
-But you have to write your own code and feedback control loop to get it working with every height you put in! Some myRocket.setThrust(20.88) works after 60 seconds.
+But you have to write your own code and feedback control loop to get it working with every height you put in! Some `myRocket.setThrust(20.88)` works after 60 seconds from a height of 300 meters.
+
+The challenge: Write code for any height!
