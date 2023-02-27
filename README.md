@@ -24,7 +24,7 @@ These are the files we used in class with the Sphero RVR for control and API
 
 <img src="LandingRocket/desmos.png" width="49%"> <img src="LandingRocket/desmos2.png" width="49%">
 
-![Landing a Rocket](LandingRocket/p5js.png)
+![Landing a Rocket](LandingRocket/replit2.png)
 
 
 ### Controlling a water valve - [simulation on p5js](https://editor.p5js.org/mkreier/sketches/1oCHPXX3T)
