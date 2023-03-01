@@ -1,29 +1,25 @@
-# Simulation of a Motorized Arm
-
-The simulation in p5js (https://editor.p5js.org/mkreier/sketches/nGUH6r8OU) looks like this:
-
-![simulation](p5js.png)
-
-And the code is merely:
-
-``` js
-// https://editor.p5js.org/mkreier/sketches/nGUH6r8OU
-CANVAS_SIZE = 700;
-ARM_WIDTH = 10;
-ARM_LENGTH = CANVAS_SIZE/2;
-ARM_MASS = 1.0;
+// https://editor.p5js.org/mkreier/sketches/m-fVG84qs
+// from https://youtu.be/swJ7ECbuKfY?t=571
+CANVAS_SIZE  = 700;
+ARM_WIDTH    = 10;
+ARM_LENGTH   = CANVAS_SIZE/2;
+ARM_MASS     = 1.0;
 ARM_FRICTION = 1.8;
 
 DELTA_T = 0.05;
 
-arm_angle = 0;
+arm_angle    = 0;
 arm_velocity = 0;
-arm_torque = 560;
+arm_torque   = 560;
+let count = 0;
 let slider;
-let sum_error=0;
-let last_error = 0;
-let ANGLE_SETPOINTS = [30,45,60,90,120,135, 150];
-angle_index = 0;
+let error        = 0;
+let sum_error    = 0;
+let last_error   = 0;
+let change_error = 0;
+let output       = 0;
+let ANGLE_SETPOINTS = [30, 45, 60, 90, 120, 135, 150];
+angle_index   = 0;
 let ANGLE_SET = ANGLE_SETPOINTS[angle_index];
 let loopCount = 0;
 const INTERVAL_DURATION = 50;
@@ -40,9 +36,12 @@ function setup() {
 //                   SETPOINT       - set by you
 // Output parameter: arm_torque     - control of the motor
 
-let SETPOINT = 120;
+let SETPOINT     = 90;
 let MOTOR_TORQUE = 1200;
-let TOLERANCE = 5;
+let TOLERANCE    = 5;
+let k  = 100;
+let kI = 10;
+let kD = 200; 
 
 function draw() {
   drawLines();
@@ -51,11 +50,21 @@ function draw() {
   
   // Use the arm_torque slider to observe the effect of torque on the position of 
   // the arm. When you are ready to try to automate this, comment out the next line.
-  arm_torque = map(slider.value(),0,255,-2000,2000);
+  // arm_torque = map(slider.value(),0,255,-2000,2000);
   
   // your automated code goes here:
+  error =  SETPOINT - arm_angle;
+  sum_error   += error;
+  change_error = error - last_error;
   
+  output = k * error + kI * sum_error + kD * change_error;
   
+  arm_torque = output;
+  last_error = error;
+  print(count + "\t" + arm_angle)
+  count += 1;
+  
+  cycle();
 }
 
 
@@ -106,10 +115,15 @@ function armSimulation() {
 function setLineDash(list) {
   drawingContext.setLineDash(list);
 }
-```
 
-## Updated with PID control
-
-This feedback-control loop can be improved step by step and finally reach the designated angles fairly fast. A [simulation to randomly selected angles](https://editor.p5js.org/mkreier/sketches/m-fVG84qs) will result in these final angles (visualized with Desmos):
-
-![Desmos angles](desmos_random.png)
+function cycle() {  // cycle through the set angles
+  if(count % INTERVAL_DURATION == 0) {
+    angle_index += 1;
+    if(angle_index > 6) { 
+      angle_index = 0;
+      loopCount += 1;
+    }
+    angle_index = int(random(6));
+    SETPOINT = ANGLE_SETPOINTS[angle_index];
+  }  
+}
