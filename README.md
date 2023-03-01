@@ -34,3 +34,7 @@ These are the files we used in class with the Sphero RVR for control and API
 ### Controlling a robot arm to a specific angle just with torque - [simulation on p5js](https://editor.p5js.org/mkreier/sketches/nGUH6r8OU)
 
 ![Robot Arm](MotorizedArmSimulation/p5js.png)
+
+With an updated PID feedback control loop the specific angle are reached relatively fast, as [this simulation shows](https://editor.p5js.org/mkreier/sketches/0S24LZjgC). You can analyze the angle over time with Desmos:
+
+![Desmos angles](MotorizedArmSimulation/desmos_random.png)
