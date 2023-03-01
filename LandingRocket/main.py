@@ -50,11 +50,7 @@ while(currentTime < SIMULATION_TIME):
   currentTime += 0.1 # Don't change me
 
   #Your code goes here
-  #myRocket.get
-  if(rocketData[0]<66):
-    myRocket.setThrust(100)
-  if(rocketData[0]<3):
-    myRocket.setThrust(22.8)
+  #myRocket.setThrust(100)
   
   
 
